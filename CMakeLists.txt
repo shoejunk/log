@@ -1,4 +1,4 @@
-# The MiniCppStarter
+# Log
 #
 # Build and run by calling: 
 # cmake -S. -Bbuild && cmake --build build && ./build/Playground
@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 # ---- Project ----
 
-project(Playground LANGUAGES CXX)
+project(Log LANGUAGES CXX)
 
 # ---- Fetch CPM ----
 
@@ -28,8 +28,8 @@ CPMAddPackage("gh:TheLartians/ModernCppStarter@0.17.2")
 # ---- Create executable ----
 
 # add your source files here
-add_executable(Playground main.cpp)
+add_executable(Log main.cpp)
 # link to your dependencies' targets here
-target_link_libraries(Playground Greeter::Greeter)
+target_link_libraries(Log Greeter::Greeter)
 # setup your target's properties
-set_target_properties(Playground PROPERTIES CXX_STANDARD 17)
+set_target_properties(Log PROPERTIES CXX_STANDARD 17)
