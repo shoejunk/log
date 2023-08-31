@@ -8,3 +8,7 @@ How to generate project files:
 How to build the project:
 - Run "cmake --build ." from the build directory.
 The executable will be located in "build\Deubg\Log.exe"
+
+How to generate and build the standalone project:
+- cmake -S standalone -B build/standalone
+- cmake --build build/standalone
