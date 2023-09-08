@@ -1,11 +1,10 @@
 #include <iostream>
-#include <log/logger.h>
+#include <log/log.h>
 
-using namespace NStk;
+using namespace NStk::NLog;
 
 int main()
 {
-	CLogger oLogger;
-	oLogger.Log("beep boop");
+	Log("beep boop\n");
 	return 0;
 }

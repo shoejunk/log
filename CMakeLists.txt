@@ -1,7 +1,4 @@
 # Log
-#
-# Build and run by calling: 
-# cmake -S. -Bbuild && cmake --build build && ./build/Playground
 
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
@@ -9,7 +6,7 @@ cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 project(
 	Log
-	VERSION 0.2.0
+	VERSION 0.3.0
 	LANGUAGES CXX)
 
 # ---- Fetch CPM ----
@@ -25,8 +22,8 @@ include(${CPM_DOWNLOAD_LOCATION})
 # ---- Add dependencies via CPM ----
 # See https://github.com/TheLartians/CPM.cmake for details and examples
 
-# the ModernCppStarter defines an example project called 'Greeter'
-CPMAddPackage("gh:TheLartians/ModernCppStarter@0.17.2")
+# PackageProject.cmake will be used to make our target installable
+CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
 # ---- Add source files ----
 
@@ -38,7 +35,7 @@ file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/
 # Note: for header-only libraries change all PUBLIC flags to INTERFACE and create an interface
 # target: add_library(${PROJECT_NAME} INTERFACE)
 add_library(${PROJECT_NAME} ${headers} ${sources})
-set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 17)
+set_target_properties(${PROJECT_NAME} PROPERTIES CXX_STANDARD 20)
 
 # being a cross-platform target, we enforce standards conformance on MSVC
 target_compile_options(${PROJECT_NAME} PUBLIC "$<$<COMPILE_LANG_AND_ID:CXX,MSVC>:/permissive->")
