@@ -1,12 +1,12 @@
-#include <log/log.h>
+export module Log;
 
-#include <cstdarg>
-#include <iostream>
-#include <Windows.h>
+import <cstdarg>;
+import <iostream>;
+import <Windows.h>;
 
 namespace NStk::NLog
 {
-	void Log(char const* ksFormat, ...)
+	export void Log(char const* ksFormat, ...)
 	{
 		va_list aList;
 		va_start(aList, ksFormat);

@@ -1,5 +1,4 @@
-#include <iostream>
-#include <log/log.h>
+import Log;
 
 using namespace NStk::NLog;
 
