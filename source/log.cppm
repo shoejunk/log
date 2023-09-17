@@ -1,4 +1,4 @@
-export module Log;
+export module stk.log;
 
 import <cstdarg>;
 import <iostream>;

@@ -1,4 +1,4 @@
-import Log;
+import stk.log;
 
 using namespace NStk::NLog;
 
