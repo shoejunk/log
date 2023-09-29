@@ -1,9 +1,9 @@
 import stk.log;
 
-using namespace NStk::NLog;
+using namespace stk;
 
 int main()
 {
-	Log("beep boop\n");
+	log("beep %s\n", "boop");
 	return 0;
 }

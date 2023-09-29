@@ -1,12 +1,17 @@
 export module stk.log;
 
-import <cstdarg>;
-import <iostream>;
+#pragma warning(push)
+#pragma warning(disable: 5050) // _M_FP_PRECISE is defined in current command line and not in module command line
+import std.core;
+#pragma warning(pop)
+
+//import <cstdarg>;
+//import <iostream>;
 import <Windows.h>;
 
-namespace NStk::NLog
+namespace stk
 {
-	export void Log(char const* ksFormat, ...)
+	export void log(char const* ksFormat, ...)
 	{
 		va_list aList;
 		va_start(aList, ksFormat);

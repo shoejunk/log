@@ -1,12 +1,12 @@
-# Log
+# log
 
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 # ---- Project ----
 
 project(
-	Log
-	VERSION 0.5.0
+	log
+	VERSION 0.6.0
 	LANGUAGES CXX)
 
 # ---- Fetch CPM ----
@@ -27,9 +27,7 @@ CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
 # ---- Add source files ----
 
-file(GLOB_RECURSE headers CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/include/*.h")
-file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp")
-file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cppm")
+file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.ixx")
 
 # ---- Create library ----
 
