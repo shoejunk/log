@@ -1,9 +1,19 @@
 import stk.log;
 
+#pragma warning(push)
+#pragma warning(disable: 5050) // _M_FP_PRECISE is defined in current command line and not in module command line
+import std.core;
+#pragma warning(pop)
+import <Windows.h>;
+
 using namespace stk;
 
 int main()
 {
-	log("beep %s\n", "boop");
+	logln("{0}, {1}!", "Hello", "World");
+	logln("And hello to you too!");
+	debug("This is a debug message\n");
+	debugln("This is another debug message");
+	debugln("And another");
 	return 0;
 }
