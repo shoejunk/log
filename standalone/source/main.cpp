@@ -15,5 +15,7 @@ int main()
 	debug("This is a debug message\n");
 	debugln("This is another debug message");
 	debugln("And another");
+	error("This is an error message\n");
+	errorln("This is another error message");
 	return 0;
 }

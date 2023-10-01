@@ -71,4 +71,6 @@ namespace stk
 	export logger<true, true, std::cout> logln("log.txt");
 	export logger<true, false> debug;
 	export logger<true, true> debugln;
+	export logger<true, false, std::cerr> error("log.txt");
+	export logger<true, true, std::cerr> errorln("log.txt");
 }
