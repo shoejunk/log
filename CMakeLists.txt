@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 project(
 	log
-	VERSION 1.1.0
+	VERSION 1.2.0
 	LANGUAGES CXX)
 
 # ---- Fetch CPM ----
@@ -25,8 +25,14 @@ include(${CPM_DOWNLOAD_LOCATION})
 # PackageProject.cmake will be used to make our target installable
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
-# ---- Add source files ----
+# Add package: shoejunk/hash
+CPMAddPackage(
+	NAME hash
+	GITHUB_REPOSITORY shoejunk/hash
+	VERSION 6.0.0
+)
 
+# ---- Add source files ----
 file(GLOB_RECURSE sources CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/source/*.ixx")
 
 # ---- Create library ----
@@ -43,6 +49,8 @@ target_include_directories(
   ${PROJECT_NAME} PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
+
+target_link_libraries(${PROJECT_NAME} hash)
 
 # the location where the project's version header will be placed should match the project's regular
 # header paths

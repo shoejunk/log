@@ -17,5 +17,10 @@ int main()
 	debugln("And another");
 	error("This is an error message\n");
 	errorln("This is another error message");
+	logln({ "boop"_h }, "Boop test 1!");
+	logln.enable<"boop"_h>();
+	logln({ "boop"_h }, "Boop test 2!");
+	logln.disable<"boop"_h>();
+	logln({ "boop"_h }, "Boop test 3!");
 	return 0;
 }
