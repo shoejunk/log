@@ -9,7 +9,7 @@ import <Windows.h>;
 
 namespace stk
 {
-	export template<bool Debug = true, bool Line = false, std::ostream&... ConstOstreams>
+	export template<bool Debug = true, bool Line = false, bool Disabled = false, std::ostream&... ConstOstreams>
 	class c_logger
 	{
 	public:
@@ -57,6 +57,11 @@ namespace stk
 		template<typename... Args>
 		void operator()(std::format_string<Args...> fmt, Args&&... args) const
 		{
+			if constexpr (Disabled)
+			{
+				return;
+			}
+
 			std::string message = std::format(fmt, std::forward<Args>(args)...);
 			if constexpr (Line)
 			{
@@ -83,6 +88,11 @@ namespace stk
 		template<typename... Args>
 		void operator()(std::vector<c_hash> const&& tags, std::format_string<Args...> fmt, Args&&... args) const
 		{
+			if constexpr (Disabled)
+			{
+				return;
+			}
+
 			bool tag_found = false;
 			for (auto tag : m_tags)
 			{
@@ -109,10 +119,17 @@ namespace stk
 		std::vector<c_hash> m_tags;
 	};
 
-	export c_logger<true, false, std::cout> log("log.txt");
-	export c_logger<true, true, std::cout> logln("log.txt");
+	// Disable debug logging in release builds
+#if defined NDEBUG
+	export c_logger<true, false, true> debug;
+	export c_logger<true, true, true> debugln;
+#else
 	export c_logger<true, false> debug;
 	export c_logger<true, true> debugln;
-	export c_logger<true, false, std::cerr> error("log.txt");
-	export c_logger<true, true, std::cerr> errorln("log.txt");
+#endif
+
+	export c_logger<true, false, false, std::cout> log("log.txt");
+	export c_logger<true, true, false, std::cout> logln("log.txt");
+	export c_logger<true, false, false, std::cerr> error("log.txt");
+	export c_logger<true, true, false, std::cerr> errorln("log.txt");
 }
