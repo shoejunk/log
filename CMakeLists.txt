@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 
 project(
 	log
-	VERSION 1.3.0
+	VERSION 1.3.1
 	LANGUAGES CXX)
 
 # ---- Fetch CPM ----
@@ -29,7 +29,7 @@ CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 CPMAddPackage(
 	NAME hash
 	GITHUB_REPOSITORY shoejunk/hash
-	VERSION 6.0.0
+	VERSION 6.0.1
 )
 
 # ---- Add source files ----
