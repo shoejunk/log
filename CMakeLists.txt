@@ -29,7 +29,8 @@ CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 CPMAddPackage(
 	NAME hash
 	GITHUB_REPOSITORY shoejunk/hash
-	VERSION 6.0.1
+	#VERSION 6.0.1
+	GIT_VERSION main
 )
 
 # ---- Add source files ----
