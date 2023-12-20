@@ -30,7 +30,7 @@ CPMAddPackage(
 	NAME hash
 	GITHUB_REPOSITORY shoejunk/hash
 	#VERSION 6.0.1
-	GIT_VERSION main
+	GIT_TAG main
 )
 
 # ---- Add source files ----
