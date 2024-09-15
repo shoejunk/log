@@ -1,9 +1,5 @@
+import std;
 import stk.log;
-
-#pragma warning(push)
-#pragma warning(disable: 5050) // _M_FP_PRECISE is defined in current command line and not in module command line
-import std.core;
-#pragma warning(pop)
 import <Windows.h>;
 
 using namespace stk;
