@@ -1,12 +1,12 @@
 export module stk.log;
 
-import std;
+import se;
 import stk.hash;
 import <Windows.h>;
 
 namespace stk
 {
-	export template<bool Debug = true, bool Line = false, bool Disabled = false, std::ostream&... ConstOstreams>
+	export template<bool Debug = true, bool Line = false, bool Disabled = false, se::ostream&... ConstOstreams>
 	class c_logger
 	{
 	public:
@@ -22,7 +22,7 @@ namespace stk
 		{
 			if (file != nullptr)
 			{
-				m_file_stream = new std::ofstream(file);
+				m_file_stream = new se::ofstream(file);
 			}
 		}
 
@@ -42,7 +42,7 @@ namespace stk
 
 		void disable(c_hash tag)
 		{
-			m_tags.erase(std::remove(m_tags.begin(), m_tags.end(), tag), m_tags.end());
+			m_tags.erase(se::remove(m_tags.begin(), m_tags.end(), tag), m_tags.end());
 		}
 
 		template<c_hash... Tags>
@@ -52,14 +52,14 @@ namespace stk
 		}
 
 		template<typename... Args>
-		void operator()(std::format_string<Args...> fmt, Args&&... args) const
+		void operator()(se::format_string<Args...> fmt, Args&&... args) const
 		{
 			if constexpr (Disabled)
 			{
 				return;
 			}
 
-			std::string message = std::format(fmt, std::forward<Args>(args)...);
+			se::string message = se::format(fmt, se::forward<Args>(args)...);
 			if constexpr (Line)
 			{
 				message += '\n';
@@ -83,7 +83,7 @@ namespace stk
 		}
 
 		template<typename... Args>
-		void operator()(std::vector<c_hash> const&& tags, std::format_string<Args...> fmt, Args&&... args) const
+		void operator()(se::vector<c_hash> const&& tags, se::format_string<Args...> fmt, Args&&... args) const
 		{
 			if constexpr (Disabled)
 			{
@@ -93,7 +93,7 @@ namespace stk
 			bool tag_found = false;
 			for (auto tag : m_tags)
 			{
-				if (std::find(tags.begin(), tags.end(), tag) == tags.end())
+				if (se::find(tags.begin(), tags.end(), tag) == tags.end())
 				{
 					continue;
 				}
@@ -107,13 +107,13 @@ namespace stk
 				return;
 			}
 
-			operator()(fmt, std::forward<Args>(args)...);
+			operator()(fmt, se::forward<Args>(args)...);
 		}
 
 	private:
-		std::vector<std::ostream*> m_ostreams;
-		std::ofstream* m_file_stream;
-		std::vector<c_hash> m_tags;
+		se::vector<se::ostream*> m_ostreams;
+		se::ofstream* m_file_stream;
+		se::vector<c_hash> m_tags;
 	};
 
 	// Disable debug logging in release builds
@@ -125,8 +125,8 @@ namespace stk
 	export c_logger<true, true> debugln;
 #endif
 
-	export c_logger<true, false, false, std::cout> log("log.txt");
-	export c_logger<true, true, false, std::cout> logln("log.txt");
-	export c_logger<true, false, false, std::cerr> error("log.txt");
-	export c_logger<true, true, false, std::cerr> errorln("log.txt");
+	export c_logger<true, false, false, se::cout> log("log.txt");
+	export c_logger<true, true, false, se::cout> logln("log.txt");
+	export c_logger<true, false, false, se::cerr> error("log.txt");
+	export c_logger<true, true, false, se::cerr> errorln("log.txt");
 }

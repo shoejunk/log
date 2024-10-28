@@ -25,6 +25,14 @@ include(${CPM_DOWNLOAD_LOCATION})
 # PackageProject.cmake will be used to make our target installable
 CPMAddPackage("gh:TheLartians/PackageProject.cmake@1.8.0")
 
+# Add package: shoejunk/se
+CPMAddPackage(
+	NAME se
+	GITHUB_REPOSITORY shoejunk/se
+	#VERSION 6.0.1
+	GIT_TAG main
+)
+
 # Add package: shoejunk/hash
 CPMAddPackage(
 	NAME hash
@@ -51,7 +59,7 @@ target_include_directories(
                          $<INSTALL_INTERFACE:include/${PROJECT_NAME}-${PROJECT_VERSION}>
 )
 
-target_link_libraries(${PROJECT_NAME} hash)
+target_link_libraries(${PROJECT_NAME} se hash)
 
 # the location where the project's version header will be placed should match the project's regular
 # header paths
